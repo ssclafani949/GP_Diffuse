@@ -1,0 +1,450 @@
+#
+# atmospheric
+#
+
+conv_norm:
+  range: [0.,null]
+  default: 1.02
+  class: Norm
+
+prompt_norm:
+  range: [0.,null]
+  default: 0.5
+  class: Norm
+
+delta_gamma:
+  range: [-1., 1.]
+  default:  0.
+  interpolate: False
+  class: DeltaGamma
+  reference_energy: 10000
+
+muon_norm:
+  range: [0, null]
+  default: 1.
+  class: Norm
+  prior: 1.
+  prior_width: 0.05
+
+muongun_norm:
+  range: [0, null]
+  default: 1.
+  class: Norm
+
+CR_grad:
+  range: [-1.0, 2.0]
+  default: 0.
+  class: CRGrad
+  prior: 0.
+  prior_width: 1.
+
+kPi_mceq:
+  range: [-0.5,0.5]
+  default: 0.
+  interpolate: False
+  class: KPiMCEq
+
+kPi_ratio:
+  range: [0.,null]
+  default: 1.
+  interpolate: False
+  class: KPiRatio
+
+# Barr
+barr_h:
+  range: [-0.8, 0.8]
+  default: 0.
+  class: BarrLinear
+  prior: 0.
+  prior_width: 0.15
+
+barr_y:
+  range: [-0.6, 0.6]
+  default: 0.
+  class: BarrLinear
+  prior: 0.
+  prior_width: 0.30
+
+barr_w:
+  range: [-0.6, 0.6]
+  default: 0.
+  class: BarrLinear
+  prior: 0.
+  prior_width: 0.40
+
+barr_z:
+  range: [-0.244, 0.6]
+  default: 0.
+  class: BarrLinear
+  prior: 0.
+  prior_width: 0.12
+
+#
+# astro
+#
+
+astro_norm:
+  default: 1.8
+  range: [0., null]
+  interpolate: False
+  class: Norm
+  additional:
+    per_type_norm: False
+
+gamma_astro:
+  default: 2.52
+  range: [1., null]
+  interpolate: False
+  class: SpectralIndex
+  additional:
+    reference_index: 2.0
+
+astro_nue_ratio:
+  default: 1.0
+  range: [0., null]
+  interpolate: False
+  class: FlavorRatio
+  additional:
+    flavor: 12
+
+astro_nutau_ratio:
+  default: 1.0
+  range: [0., null]
+  interpolate: False
+  class: FlavorRatio
+  additional:
+    flavor: 16
+
+cutoff_astro:
+  default: 7.
+  range: [2.,10.]
+  class: Cutoff
+  interpolate: False
+
+astro_parabola_norm:
+  default: 0.6
+  range: [0., null]
+  interpolate: False
+  class: ScaledNorm
+  additional:
+    scale_factor: 0.01
+    per_type_norm: False
+
+astro_parabola_a:
+  default: 2.3
+  range: [-2., 2.5]
+  interpolate: False
+  class: SpectralIndex
+  additional:
+    reference_index: 2.0
+
+astro_parabola_b:
+  default: 0.35
+  range: [0., null]
+  interpolate: False
+  class: LogEnergyIndex
+
+gamma_astro_first:
+  default: 2.9
+  range: [0., 4.]
+  interpolate: False
+  class: BrokenSpectralIndex
+  additional:
+    reference_index: 2.0
+    break_energy: &break_energy_point 7e4
+    n_component: first
+
+gamma_astro_second:
+  default: 2.3
+  range: [1.5, 4.]
+  interpolate: False
+  class: BrokenSpectralIndex
+  additional:
+    reference_index: 2.0
+    break_energy: *break_energy_point
+    n_component: second
+
+modelastro_norm:
+  default: 0.1
+  range: [0., null]
+  interpolate: False
+  class: Norm
+  additional:
+    per_type_norm: False
+
+#
+# galactic
+#
+
+galactic_norm:
+  default: 0.
+  range: [0., null]
+  interpolate: False
+  class: Norm
+
+galactic_norm_kg5:
+  default: 0.
+  range: [0., null]
+  interpolate: False
+  class: Norm
+
+galactic_norm_kg50:
+  default: 0.
+  range: [0., null]
+  interpolate: False
+  class: Norm
+
+galactic_norm_FMc:
+  default: 0.
+  range: [0., null]
+  interpolate: False
+  class: Norm
+
+galactic_norm_FMSNR:
+  default: 0.
+  range: [0., null]
+  interpolate: False
+  class: Norm
+
+galactic_norm_inject:
+  default: 1.
+  range: [0., null]
+  interpolate: False
+  class: Norm
+
+gamma_galactic:
+  default: 2.
+  range: [1., null]
+  interpolate: False
+  class: SpectralIndex
+  additional:
+    reference_index: 0.
+
+#
+# piecewise - tracks
+#
+
+piece1:
+  default: 0.7
+  range: [0., null]
+  interpolate: False
+  class: PiecewiseNorm
+  additional:
+    binedge_low: 100.0
+    binedge_up: 15000.0
+    per_type_norm: False
+    reference_index: 2.0
+    index_in_bin: 2.0
+    plot_E_mean:  5880.751574258295
+
+piece2:
+  default: 1.4
+  range: [0., null]
+  interpolate: False
+  class: PiecewiseNorm
+  additional:
+    binedge_low: 15000.0
+    binedge_up: 104004.191153
+    per_type_norm: False
+    reference_index: 2.0
+    index_in_bin: 2.0
+    plot_E_mean:  44457.70063477783
+
+piece3:
+  default: 2.1
+  range: [0., null]
+  interpolate: False
+  class: PiecewiseNorm
+  additional:
+    binedge_low: 104004.191153
+    binedge_up: 721124.785154
+    per_type_norm: False
+    reference_index: 2.0
+    index_in_bin: 2.0
+    plot_E_mean:  277638.1669550654
+
+piece4:
+  default: 2.8
+  range: [0., null]
+  interpolate: False
+  class: PiecewiseNorm
+  additional:
+    binedge_low: 721124.785154
+    binedge_up: 5000000.0
+    per_type_norm: False
+    reference_index: 2.0
+    index_in_bin: 2.0
+    plot_E_mean:  1823166.0393368711
+
+piece5:
+  default: 0.5
+  range: [0., null]
+  interpolate: False
+  class: PiecewiseNorm
+  additional:
+    binedge_low: 5000000.0
+    binedge_up: 100000000.0
+    per_type_norm: False
+    reference_index: 2.0
+    index_in_bin: 2.0
+    plot_E_mean:  19559730.48923778
+
+#
+# piecewise - as used in multi-year cscd analysis
+#
+
+cscd_piece1:
+  default: 0.7
+  range: [0., null]
+  interpolate: False
+  class: PiecewiseNorm
+  additional:
+    binedge_low: 4641.999999999999
+    binedge_up: 10000.81768748618
+    per_type_norm: False
+    reference_index: 2.0
+    index_in_bin: 2.0
+
+cscd_piece2:
+  default: 1.4
+  range: [0., null]
+  interpolate: False
+  class: PiecewiseNorm
+  additional:
+    binedge_low: 10000.81768748618
+    binedge_up: 21545.9617445792
+    per_type_norm: False
+    reference_index: 2.0
+    index_in_bin: 2.0
+
+cscd_piece3:
+  default: 2.0999999999999996
+  range: [0., null]
+  interpolate: False
+  class: PiecewiseNorm
+  additional:
+    binedge_low: 21545.9617445792
+    binedge_up: 46419.05112216465
+    per_type_norm: False
+    reference_index: 2.0
+    index_in_bin: 2.0
+
+cscd_piece4:
+  default: 2.8
+  range: [0., null]
+  interpolate: False
+  class: PiecewiseNorm
+  additional:
+    binedge_low: 46419.05112216465
+    binedge_up: 100006.13259346609
+    per_type_norm: False
+    reference_index: 2.0
+    index_in_bin: 2.0
+
+cscd_piece5:
+  default: 3.5
+  range: [0., null]
+  interpolate: False
+  class: PiecewiseNorm
+  additional:
+    binedge_low: 100006.13259346609
+    binedge_up: 215455.2132050461
+    per_type_norm: False
+    reference_index: 2.0
+    index_in_bin: 2.0
+
+cscd_piece6:
+  default: 4.199999999999999
+  range: [0., null]
+  interpolate: False
+  class: PiecewiseNorm
+  additional:
+    binedge_low: 215455.2132050461
+    binedge_up: 464181.0226372536
+    per_type_norm: False
+    reference_index: 2.0
+    index_in_bin: 2.0
+
+cscd_piece7:
+  default: 4.8999999999999995
+  range: [0., null]
+  interpolate: False
+  class: PiecewiseNorm
+  additional:
+    binedge_low: 464181.0226372536
+    binedge_up: 1000040.8835385782
+    per_type_norm: False
+    reference_index: 2.0
+    index_in_bin: 2.0
+
+cscd_piece8:
+  default: 5.6
+  range: [0., null]
+  interpolate: False
+  class: PiecewiseNorm
+  additional:
+    binedge_low: 1000040.8835385782
+    binedge_up: 2154508.0905432836
+    per_type_norm: False
+    reference_index: 2.0
+    index_in_bin: 2.0
+
+cscd_piece9:
+  default: 6.3
+  range: [0., null]
+  interpolate: False
+  class: PiecewiseNorm
+  additional:
+    binedge_low: 2154508.0905432836
+    binedge_up: 4641715.342468193
+    per_type_norm: False
+    reference_index: 2.0
+    index_in_bin: 2.0
+
+cscd_piece10:
+  default: 7.0
+  range: [0., null]
+  interpolate: False
+  class: PiecewiseNorm
+  additional:
+    binedge_low: 4641715.342468193
+    binedge_up: 10000204.415603613
+    per_type_norm: False
+    reference_index: 2.0
+    index_in_bin: 2.0
+
+cscd_piece11:
+  default: 7.699999999999999
+  range: [0., null]
+  interpolate: False
+  class: PiecewiseNorm
+  additional:
+    binedge_low: 10000204.415603613
+    binedge_up: 21544640.499363646
+    per_type_norm: False
+    reference_index: 2.0
+    index_in_bin: 2.0
+
+cscd_piece12:
+  default: 8.399999999999999
+  range: [0., null]
+  interpolate: False
+  class: PiecewiseNorm
+  additional:
+    binedge_low: 21544640.499363646
+    binedge_up: 46416204.60503384
+    per_type_norm: False
+    reference_index: 2.0
+    index_in_bin: 2.0
+
+cscd_piece13:
+  default: 9.1
+  range: [0., null]
+  interpolate: False
+  class: PiecewiseNorm
+  additional:
+    binedge_low: 46416204.60503384
+    binedge_up: 100000000.0
+    per_type_norm: False
+    reference_index: 2.0
+    index_in_bin: 2.0

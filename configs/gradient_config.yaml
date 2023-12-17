@@ -1,0 +1,26 @@
+
+snowstorm_simulated_ranges:
+  DOMEfficiency: [0.9, 1.1]
+  IceAbsorption: [0.9, 1.1]
+  IceScattering: [0.9, 1.1]
+  IceAnisotropyScale: [0.0, 2.0]
+  HoleIceForward_p0: [-0.84, 0.3]
+  HoleIceForward_p1 : [-0.134, 0.05]
+
+snowstorm_ranges_for_calculation:
+
+
+input_params:
+  conv_norm: 1.0
+  delta_gamma: 0.0
+  CR_grad: 0.0
+  barr_h: 0.0
+  barr_w: 0.0
+  barr_z: 0.0
+  barr_y: 0.0
+  astro_norm: 1.36
+  gamma_astro: 2.37
+  prompt_norm: 0.0
+  muon_norm: 0.0
+  muongun_norm: 0.0
+  effective_veto: 1.0
